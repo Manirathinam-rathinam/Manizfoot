@@ -1,0 +1,2066 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>ManizFoot | Football Training</title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #080808;
+            color: white;
+        }
+
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            padding: 20px 8%;
+
+            border-bottom: 1px solid #222;
+        }
+
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+
+        .logo span {
+            color: #39ff14;
+        }
+
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 18px;
+        }
+
+
+        /* HERO */
+
+        .hero {
+            min-height: 65vh;
+
+            display: flex;
+            flex-direction: column;
+
+            justify-content: center;
+            align-items: center;
+
+            text-align: center;
+
+            padding: 40px 20px;
+        }
+
+
+        .hero h1 {
+            font-size: clamp(50px, 10vw, 90px);
+            margin-bottom: 15px;
+        }
+
+
+        .hero h1 span {
+            color: #39ff14;
+        }
+
+
+        .hero p {
+            font-size: 21px;
+            color: #aaa;
+
+            max-width: 650px;
+
+            margin-bottom: 30px;
+        }
+
+
+        .start-btn {
+            background: #39ff14;
+            color: #000;
+
+            padding: 16px 35px;
+
+            border: none;
+            border-radius: 30px;
+
+            font-size: 18px;
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+
+        /* GENERAL */
+
+        .section {
+            padding: 65px 8%;
+            text-align: center;
+        }
+
+
+        .section h2 {
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+
+
+        .subtitle {
+            color: #aaa;
+            margin-bottom: 35px;
+        }
+
+
+        /* TRAINING */
+
+        .cards {
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(200px, 1fr));
+
+            gap: 20px;
+        }
+
+
+        .card {
+            background: #151515;
+
+            padding: 30px 20px;
+
+            border-radius: 15px;
+
+            border: 1px solid #292929;
+
+            transition: 0.2s;
+        }
+
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+
+        .card h3 {
+            margin: 15px 0 10px;
+        }
+
+
+        .card p {
+            color: #aaa;
+            line-height: 1.6;
+        }
+
+
+        .training-result {
+            margin-top: 35px;
+
+            background: #151515;
+
+            padding: 30px;
+
+            border-radius: 15px;
+
+            display: none;
+        }
+
+
+        button {
+            cursor: pointer;
+        }
+
+
+        .complete-btn,
+        .challenge-btn {
+            margin-top: 20px;
+
+            padding: 13px 22px;
+
+            border: none;
+
+            border-radius: 10px;
+
+            background: #39ff14;
+
+            color: black;
+
+            font-weight: bold;
+        }
+
+
+        /* DASHBOARD */
+
+        .dashboard-section {
+            background: #0d0d0d;
+        }
+
+
+        .dashboard {
+            max-width: 1000px;
+
+            margin: auto;
+
+            background: #151515;
+
+            padding: 30px;
+
+            border-radius: 20px;
+
+            border: 1px solid #292929;
+        }
+
+
+        .player-header {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            flex-wrap: wrap;
+
+            gap: 20px;
+
+            margin-bottom: 30px;
+        }
+
+
+        .player-name {
+            font-size: 32px;
+
+            font-weight: bold;
+        }
+
+
+        .player-name span {
+            color: #39ff14;
+        }
+
+
+        .level {
+            background: #39ff14;
+
+            color: black;
+
+            padding: 10px 18px;
+
+            border-radius: 20px;
+
+            font-weight: bold;
+        }
+
+
+        .dashboard-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(180px, 1fr));
+
+            gap: 15px;
+        }
+
+
+        .stat-box {
+            background: #0d0d0d;
+
+            padding: 25px;
+
+            border-radius: 15px;
+
+            text-align: center;
+        }
+
+
+        .stat-icon {
+            font-size: 35px;
+        }
+
+
+        .stat-number {
+            font-size: 30px;
+
+            color: #39ff14;
+
+            font-weight: bold;
+
+            margin: 8px 0;
+        }
+
+
+        .stat-label {
+            color: #aaa;
+        }
+
+
+        .best-skill {
+            margin-top: 25px;
+
+            padding: 20px;
+
+            background: #0d0d0d;
+
+            border-radius: 15px;
+        }
+
+
+        /* PROGRESS */
+
+        .progress-bar {
+            width: 100%;
+
+            height: 18px;
+
+            background: #292929;
+
+            border-radius: 20px;
+
+            overflow: hidden;
+
+            margin: 15px 0 25px;
+        }
+
+
+        .progress-fill {
+            height: 100%;
+
+            width: 0%;
+
+            background: #39ff14;
+
+            border-radius: 20px;
+
+            transition: width 0.5s;
+        }
+
+
+        .skill-progress {
+            text-align: left;
+
+            margin-top: 20px;
+        }
+
+
+        .skill-title {
+            display: flex;
+
+            justify-content: space-between;
+
+            margin-bottom: 7px;
+        }
+
+
+        .skill-title span:last-child {
+            color: #39ff14;
+        }
+
+
+        .overall-number {
+            font-size: 50px;
+
+            color: #39ff14;
+
+            font-weight: bold;
+        }
+
+
+        /* CHALLENGES */
+
+        .challenge-card {
+            background: #151515;
+
+            padding: 25px;
+
+            border-radius: 15px;
+
+            border: 1px solid #292929;
+
+            text-align: left;
+        }
+
+
+        .challenge-icon {
+            font-size: 45px;
+        }
+
+
+        .xp {
+            color: #39ff14;
+
+            font-weight: bold;
+
+            margin-top: 10px;
+        }
+
+
+        .challenge-card.completed {
+            border: 1px solid #39ff14;
+        }
+
+
+        /* PROFILE */
+
+        .profile-box {
+            max-width: 500px;
+
+            margin: 30px auto;
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 15px;
+        }
+
+
+        .profile-box input {
+            padding: 15px;
+
+            border-radius: 10px;
+
+            border: 1px solid #333;
+
+            background: #151515;
+
+            color: white;
+
+            font-size: 16px;
+        }
+
+
+        .profile-box button {
+            padding: 15px;
+
+            border: none;
+
+            border-radius: 10px;
+
+            background: #39ff14;
+
+            color: black;
+
+            font-weight: bold;
+        }
+
+
+        #profileResult {
+            margin-top: 25px;
+        }
+
+
+        footer {
+            text-align: center;
+
+            padding: 30px;
+
+            color: #777;
+
+            border-top: 1px solid #222;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- NAVIGATION -->
+
+    <nav>
+
+        <div class="logo">
+            MANIZ<span>FOOT</span> ⚽
+        </div>
+
+
+        <div>
+
+            <a href="#">
+                Home
+            </a>
+
+            <a href="#dashboard">
+                Dashboard
+            </a>
+
+            <a href="#training">
+                Training
+            </a>
+
+            <a href="#challenges">
+                Challenges
+            </a>
+
+            <a href="#profile">
+                Profile
+            </a>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <h1>
+            PLAY <span>BETTER.</span>
+        </h1>
+
+
+        <p>
+            Train. Complete challenges.
+            Track your football journey.
+        </p>
+
+
+        <button
+            class="start-btn"
+            onclick="goToTraining()">
+
+            START TRAINING ⚽
+
+        </button>
+
+    </section>
+
+
+
+    <!-- PLAYER DASHBOARD -->
+
+    <section
+        class="section dashboard-section"
+        id="dashboard">
+
+
+        <h2>
+            👤 PLAYER DASHBOARD
+        </h2>
+
+
+        <p class="subtitle">
+            Your ManizFoot football journey.
+        </p>
+
+
+        <div class="dashboard">
+
+
+            <div class="player-header">
+
+
+                <div>
+
+                    <div
+                        class="player-name"
+                        id="dashboardName">
+
+                        PLAYER <span>⚽</span>
+
+                    </div>
+
+                    <p
+                        id="dashboardPosition"
+                        style="color:#aaa; margin-top:8px;">
+
+                        Create your profile to get started.
+
+                    </p>
+
+                </div>
+
+
+                <div
+                    class="level"
+                    id="dashboardLevel">
+
+                    LEVEL 1
+
+                </div>
+
+            </div>
+
+
+
+            <div class="dashboard-grid">
+
+
+                <div class="stat-box">
+
+                    <div class="stat-icon">
+                        ⭐
+                    </div>
+
+                    <div
+                        class="stat-number"
+                        id="dashboardXP">
+
+                        0
+
+                    </div>
+
+                    <div class="stat-label">
+                        XP
+                    </div>
+
+                </div>
+
+
+
+                <div class="stat-box">
+
+                    <div class="stat-icon">
+                        🔥
+                    </div>
+
+                    <div
+                        class="stat-number"
+                        id="dashboardSessions">
+
+                        0
+
+                    </div>
+
+                    <div class="stat-label">
+                        Training Sessions
+                    </div>
+
+                </div>
+
+
+
+                <div class="stat-box">
+
+                    <div class="stat-icon">
+                        📈
+                    </div>
+
+                    <div
+                        class="stat-number"
+                        id="dashboardOverall">
+
+                        0%
+
+                    </div>
+
+                    <div class="stat-label">
+                        Overall Skill
+                    </div>
+
+                </div>
+
+
+
+                <div class="stat-box">
+
+                    <div class="stat-icon">
+                        🏆
+                    </div>
+
+                    <div
+                        class="stat-number"
+                        id="dashboardChallenges">
+
+                        0
+
+                    </div>
+
+                    <div class="stat-label">
+                        Challenges
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="best-skill">
+
+                🥇 <b>Best Skill:</b>
+
+                <span
+                    id="bestSkill">
+
+                    Start training to find out!
+
+                </span>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- TRAINING -->
+
+    <section
+        class="section"
+        id="training">
+
+
+        <h2>
+            ⚽ TRAINING CENTER
+        </h2>
+
+
+        <p class="subtitle">
+            Choose a skill and start training.
+        </p>
+
+
+        <div class="cards">
+
+
+            <div
+                class="card"
+                onclick="showTraining('Ball Control')">
+
+                <div style="font-size:45px;">
+                    ⚽
+                </div>
+
+                <h3>
+                    Ball Control
+                </h3>
+
+                <p>
+                    Improve your touch and control.
+                </p>
+
+            </div>
+
+
+
+            <div
+                class="card"
+                onclick="showTraining('Passing')">
+
+                <div style="font-size:45px;">
+                    🎯
+                </div>
+
+                <h3>
+                    Passing
+                </h3>
+
+                <p>
+                    Improve your passing.
+                </p>
+
+            </div>
+
+
+
+            <div
+                class="card"
+                onclick="showTraining('Shooting')">
+
+                <div style="font-size:45px;">
+                    🥅
+                </div>
+
+                <h3>
+                    Shooting
+                </h3>
+
+                <p>
+                    Improve your finishing.
+                </p>
+
+            </div>
+
+
+
+            <div
+                class="card"
+                onclick="showTraining('Speed & Agility')">
+
+                <div style="font-size:45px;">
+                    🏃
+                </div>
+
+                <h3>
+                    Speed & Agility
+                </h3>
+
+                <p>
+                    Improve your movement.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div
+            class="training-result"
+            id="trainingResult">
+        </div>
+
+    </section>
+
+
+
+    <!-- PROGRESS -->
+
+    <section
+        class="section"
+        id="progress">
+
+
+        <h2>
+            📈 SKILL PROGRESS
+        </h2>
+
+
+        <p class="subtitle">
+            Build your football skills.
+        </p>
+
+
+        <div
+            class="dashboard">
+
+
+            <div
+                class="overall-number"
+                id="overallProgress">
+
+                0%
+
+            </div>
+
+
+            <p>
+                Overall Training Progress
+            </p>
+
+
+            <div class="progress-bar">
+
+                <div
+                    class="progress-fill"
+                    id="overallBar">
+                </div>
+
+            </div>
+
+
+
+            <div class="skill-progress">
+
+                <div class="skill-title">
+
+                    <span>
+                        ⚽ Ball Control
+                    </span>
+
+                    <span id="controlPercent">
+                        0%
+                    </span>
+
+                </div>
+
+
+                <div class="progress-bar">
+
+                    <div
+                        class="progress-fill"
+                        id="controlBar">
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="skill-progress">
+
+                <div class="skill-title">
+
+                    <span>
+                        🎯 Passing
+                    </span>
+
+                    <span id="passingPercent">
+                        0%
+                    </span>
+
+                </div>
+
+
+                <div class="progress-bar">
+
+                    <div
+                        class="progress-fill"
+                        id="passingBar">
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="skill-progress">
+
+                <div class="skill-title">
+
+                    <span>
+                        🥅 Shooting
+                    </span>
+
+                    <span id="shootingPercent">
+                        0%
+                    </span>
+
+                </div>
+
+
+                <div class="progress-bar">
+
+                    <div
+                        class="progress-fill"
+                        id="shootingBar">
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="skill-progress">
+
+                <div class="skill-title">
+
+                    <span>
+                        🏃 Speed & Agility
+                    </span>
+
+                    <span id="speedPercent">
+                        0%
+                    </span>
+
+                </div>
+
+
+                <div class="progress-bar">
+
+                    <div
+                        class="progress-fill"
+                        id="speedBar">
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- CHALLENGES -->
+
+    <section
+        class="section"
+        id="challenges">
+
+
+        <h2>
+            🏆 CHALLENGES
+        </h2>
+
+
+        <p class="subtitle">
+            Complete challenges and earn XP.
+        </p>
+
+
+        <div class="cards">
+
+
+            <div
+                class="challenge-card"
+                id="challenge1">
+
+                <div class="challenge-icon">
+                    ⚽
+                </div>
+
+                <h3>
+                    First Touch
+                </h3>
+
+                <p>
+                    Complete one Ball Control
+                    training session.
+                </p>
+
+                <div class="xp">
+                    ⭐ +50 XP
+                </div>
+
+                <button
+                    class="challenge-btn"
+                    onclick="completeChallenge(1)">
+
+                    COMPLETE
+
+                </button>
+
+            </div>
+
+
+
+            <div
+                class="challenge-card"
+                id="challenge2">
+
+                <div class="challenge-icon">
+                    🎯
+                </div>
+
+                <h3>
+                    Passing Master
+                </h3>
+
+                <p>
+                    Complete three Passing
+                    sessions.
+                </p>
+
+                <div class="xp">
+                    ⭐ +100 XP
+                </div>
+
+                <button
+                    class="challenge-btn"
+                    onclick="completeChallenge(2)">
+
+                    COMPLETE
+
+                </button>
+
+            </div>
+
+
+
+            <div
+                class="challenge-card"
+                id="challenge3">
+
+                <div class="challenge-icon">
+                    🥅
+                </div>
+
+                <h3>
+                    Finisher
+                </h3>
+
+                <p>
+                    Complete five Shooting
+                    sessions.
+                </p>
+
+                <div class="xp">
+                    ⭐ +150 XP
+                </div>
+
+                <button
+                    class="challenge-btn"
+                    onclick="completeChallenge(3)">
+
+                    COMPLETE
+
+                </button>
+
+            </div>
+
+
+
+            <div
+                class="challenge-card"
+                id="challenge4">
+
+                <div class="challenge-icon">
+                    🏃
+                </div>
+
+                <h3>
+                    Speed Runner
+                </h3>
+
+                <p>
+                    Complete three Speed &
+                    Agility sessions.
+                </p>
+
+                <div class="xp">
+                    ⭐ +100 XP
+                </div>
+
+                <button
+                    class="challenge-btn"
+                    onclick="completeChallenge(4)">
+
+                    COMPLETE
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- PROFILE -->
+
+    <section
+        class="section"
+        id="profile">
+
+
+        <h2>
+            ⚽ PLAYER PROFILE
+        </h2>
+
+
+        <p class="subtitle">
+            Your information is saved on this browser.
+        </p>
+
+
+        <div class="profile-box">
+
+
+            <input
+                type="text"
+                id="playerName"
+                placeholder="Enter your name">
+
+
+            <input
+                type="text"
+                id="playerPosition"
+                placeholder="Your position">
+
+
+            <input
+                type="text"
+                id="favoriteSkill"
+                placeholder="Favorite skill">
+
+
+            <button
+                onclick="createProfile()">
+
+                SAVE PROFILE ⚽
+
+            </button>
+
+        </div>
+
+
+        <div id="profileResult"></div>
+
+    </section>
+
+
+
+    <footer>
+
+        © 2026 ManizFoot
+
+        <br><br>
+
+        Train. Play. Improve. ⚽
+
+    </footer>
+
+
+
+    <script>
+
+
+        /* =========================
+           PLAYER DATA
+        ========================= */
+
+
+        let progress =
+            JSON.parse(
+                localStorage.getItem(
+                    "manizFootProgress"
+                )
+            ) || {
+
+                control: 0,
+                passing: 0,
+                shooting: 0,
+                speed: 0,
+                sessions: 0
+
+            };
+
+
+        let xp =
+            Number(
+                localStorage.getItem(
+                    "manizFootXP"
+                )
+            ) || 0;
+
+
+        let completedChallenges =
+            JSON.parse(
+                localStorage.getItem(
+                    "manizFootChallenges"
+                )
+            ) || [];
+
+
+        let player =
+            JSON.parse(
+                localStorage.getItem(
+                    "manizFootPlayer"
+                )
+            ) || {
+
+                name: "",
+                position: "",
+                skill: ""
+
+            };
+
+
+
+        /* =========================
+           TRAINING NAVIGATION
+        ========================= */
+
+
+        function goToTraining() {
+
+            document
+                .getElementById("training")
+                .scrollIntoView({
+                    behavior: "smooth"
+                });
+
+        }
+
+
+
+        /* =========================
+           TRAINING
+        ========================= */
+
+
+        function showTraining(skill) {
+
+
+            const result =
+                document.getElementById(
+                    "trainingResult"
+                );
+
+
+            let training = "";
+
+
+            if (skill === "Ball Control") {
+
+                training = `
+
+                    <h2>⚽ Ball Control</h2>
+
+                    <p>
+                        Difficulty: Beginner
+                    </p>
+
+                    <p>
+                        Duration: 15 minutes
+                    </p>
+
+                    <br>
+
+                    <p>
+                        1. Warm up.
+                    </p>
+
+                    <p>
+                        2. Practise gentle touches.
+                    </p>
+
+                    <p>
+                        3. Dribble around safe objects.
+                    </p>
+
+                    <p>
+                        4. Finish with free dribbling.
+                    </p>
+
+                `;
+
+            }
+
+
+            else if (skill === "Passing") {
+
+                training = `
+
+                    <h2>🎯 Passing</h2>
+
+                    <p>
+                        Difficulty: Beginner
+                    </p>
+
+                    <p>
+                        Duration: 15 minutes
+                    </p>
+
+                    <br>
+
+                    <p>
+                        1. Find a safe wall or partner.
+                    </p>
+
+                    <p>
+                        2. Pass using the inside of your foot.
+                    </p>
+
+                    <p>
+                        3. Aim for a target.
+                    </p>
+
+                    <p>
+                        4. Practise with both feet.
+                    </p>
+
+                `;
+
+            }
+
+
+            else if (skill === "Shooting") {
+
+                training = `
+
+                    <h2>🥅 Shooting</h2>
+
+                    <p>
+                        Difficulty: Beginner
+                    </p>
+
+                    <p>
+                        Duration: 20 minutes
+                    </p>
+
+                    <br>
+
+                    <p>
+                        1. Start with controlled shots.
+                    </p>
+
+                    <p>
+                        2. Focus on accuracy.
+                    </p>
+
+                    <p>
+                        3. Aim at safe targets.
+                    </p>
+
+                    <p>
+                        4. Take breaks between sets.
+                    </p>
+
+                `;
+
+            }
+
+
+            else {
+
+                training = `
+
+                    <h2>🏃 Speed & Agility</h2>
+
+                    <p>
+                        Difficulty: Beginner
+                    </p>
+
+                    <p>
+                        Duration: 15 minutes
+                    </p>
+
+                    <br>
+
+                    <p>
+                        1. Warm up properly.
+                    </p>
+
+                    <p>
+                        2. Practise short movements.
+                    </p>
+
+                    <p>
+                        3. Practise safe direction changes.
+                    </p>
+
+                    <p>
+                        4. Rest when needed.
+                    </p>
+
+                `;
+
+            }
+
+
+            result.innerHTML =
+                training + `
+
+                <button
+                    class="complete-btn"
+                    onclick="completeTraining('${skill}')">
+
+                    ✅ COMPLETE TRAINING
+
+                </button>
+
+            `;
+
+
+            result.style.display = "block";
+
+
+            result.scrollIntoView({
+                behavior: "smooth"
+            });
+
+        }
+
+
+
+        /* =========================
+           COMPLETE TRAINING
+        ========================= */
+
+
+        function completeTraining(skill) {
+
+
+            if (skill === "Ball Control") {
+
+                progress.control += 10;
+
+                if (progress.control > 100)
+                    progress.control = 100;
+
+            }
+
+
+            else if (skill === "Passing") {
+
+                progress.passing += 10;
+
+                if (progress.passing > 100)
+                    progress.passing = 100;
+
+            }
+
+
+            else if (skill === "Shooting") {
+
+                progress.shooting += 10;
+
+                if (progress.shooting > 100)
+                    progress.shooting = 100;
+
+            }
+
+
+            else if (skill === "Speed & Agility") {
+
+                progress.speed += 10;
+
+                if (progress.speed > 100)
+                    progress.speed = 100;
+
+            }
+
+
+            progress.sessions++;
+
+
+            saveProgress();
+
+
+            updateEverything();
+
+
+            alert(
+                "🔥 Training completed!"
+            );
+
+        }
+
+
+
+        /* =========================
+           SAVE PROGRESS
+        ========================= */
+
+
+        function saveProgress() {
+
+            localStorage.setItem(
+                "manizFootProgress",
+                JSON.stringify(progress)
+            );
+
+        }
+
+
+
+        /* =========================
+           CHALLENGES
+        ========================= */
+
+
+        function completeChallenge(id) {
+
+
+            if (
+                completedChallenges.includes(id)
+            ) {
+
+                return;
+
+            }
+
+
+            let required = false;
+
+            let reward = 0;
+
+
+            if (
+                id === 1 &&
+                progress.control >= 10
+            ) {
+
+                required = true;
+                reward = 50;
+
+            }
+
+
+            if (
+                id === 2 &&
+                progress.passing >= 30
+            ) {
+
+                required = true;
+                reward = 100;
+
+            }
+
+
+            if (
+                id === 3 &&
+                progress.shooting >= 50
+            ) {
+
+                required = true;
+                reward = 150;
+
+            }
+
+
+            if (
+                id === 4 &&
+                progress.speed >= 30
+            ) {
+
+                required = true;
+                reward = 100;
+
+            }
+
+
+            if (!required) {
+
+                alert(
+                    "⚠️ Complete the required training first!"
+                );
+
+                return;
+
+            }
+
+
+            xp += reward;
+
+
+            completedChallenges.push(id);
+
+
+            localStorage.setItem(
+                "manizFootXP",
+                xp
+            );
+
+
+            localStorage.setItem(
+                "manizFootChallenges",
+                JSON.stringify(
+                    completedChallenges
+                )
+            );
+
+
+            updateEverything();
+
+
+            alert(
+                "🏆 Challenge complete! +" +
+                reward +
+                " XP"
+            );
+
+        }
+
+
+
+        /* =========================
+           PROFILE
+        ========================= */
+
+
+        function createProfile() {
+
+
+            const name =
+                document.getElementById(
+                    "playerName"
+                ).value.trim();
+
+
+            const position =
+                document.getElementById(
+                    "playerPosition"
+                ).value.trim();
+
+
+            const skill =
+                document.getElementById(
+                    "favoriteSkill"
+                ).value.trim();
+
+
+            if (
+                name === "" ||
+                position === "" ||
+                skill === ""
+            ) {
+
+                alert(
+                    "Please fill in all the boxes!"
+                );
+
+                return;
+
+            }
+
+
+            player = {
+
+                name: name,
+                position: position,
+                skill: skill
+
+            };
+
+
+            localStorage.setItem(
+                "manizFootPlayer",
+                JSON.stringify(player)
+            );
+
+
+            updateDashboard();
+
+
+            document.getElementById(
+                "profileResult"
+            ).innerHTML = `
+
+                <div class="card">
+
+                    <h2>
+                        ⚽ Profile Saved!
+                    </h2>
+
+                    <p>
+                        Welcome to ManizFoot,
+                        ${name}!
+                    </p>
+
+                </div>
+
+            `;
+
+        }
+
+
+
+        /* =========================
+           DASHBOARD
+        ========================= */
+
+
+        function updateDashboard() {
+
+
+            const overall =
+                Math.round(
+
+                    (
+                        progress.control +
+                        progress.passing +
+                        progress.shooting +
+                        progress.speed
+
+                    ) / 4
+
+                );
+
+
+            const level =
+                Math.floor(
+                    xp / 500
+                ) + 1;
+
+
+            document.getElementById(
+                "dashboardXP"
+            ).textContent =
+                xp;
+
+
+            document.getElementById(
+                "dashboardSessions"
+            ).textContent =
+                progress.sessions;
+
+
+            document.getElementById(
+                "dashboardOverall"
+            ).textContent =
+                overall + "%";
+
+
+            document.getElementById(
+                "dashboardChallenges"
+            ).textContent =
+                completedChallenges.length;
+
+
+            document.getElementById(
+                "dashboardLevel"
+            ).textContent =
+                "LEVEL " + level;
+
+
+
+            if (player.name !== "") {
+
+
+                document.getElementById(
+                    "dashboardName"
+                ).innerHTML =
+                    player.name +
+                    " <span>⚽</span>";
+
+
+                document.getElementById(
+                    "dashboardPosition"
+                ).textContent =
+                    player.position +
+                    " • Favorite skill: " +
+                    player.skill;
+
+            }
+
+
+
+            /* BEST SKILL */
+
+
+            const skills = [
+
+                {
+                    name: "⚽ Ball Control",
+                    value: progress.control
+                },
+
+                {
+                    name: "🎯 Passing",
+                    value: progress.passing
+                },
+
+                {
+                    name: "🥅 Shooting",
+                    value: progress.shooting
+                },
+
+                {
+                    name: "🏃 Speed & Agility",
+                    value: progress.speed
+                }
+
+            ];
+
+
+            skills.sort(
+                function(a, b) {
+                    return b.value - a.value;
+                }
+            );
+
+
+            if (skills[0].value > 0) {
+
+                document.getElementById(
+                    "bestSkill"
+                ).textContent =
+                    skills[0].name +
+                    " — " +
+                    skills[0].value +
+                    "%";
+
+            }
+
+        }
+
+
+
+        /* =========================
+           UPDATE PROGRESS
+        ========================= */
+
+
+        function updateProgress() {
+
+
+            const overall =
+                Math.round(
+
+                    (
+                        progress.control +
+                        progress.passing +
+                        progress.shooting +
+                        progress.speed
+
+                    ) / 4
+
+                );
+
+
+            document.getElementById(
+                "overallProgress"
+            ).textContent =
+                overall + "%";
+
+
+            document.getElementById(
+                "overallBar"
+            ).style.width =
+                overall + "%";
+
+
+            document.getElementById(
+                "controlPercent"
+            ).textContent =
+                progress.control + "%";
+
+
+            document.getElementById(
+                "controlBar"
+            ).style.width =
+                progress.control + "%";
+
+
+            document.getElementById(
+                "passingPercent"
+            ).textContent =
+                progress.passing + "%";
+
+
+            document.getElementById(
+                "passingBar"
+            ).style.width =
+                progress.passing + "%";
+
+
+            document.getElementById(
+                "shootingPercent"
+            ).textContent =
+                progress.shooting + "%";
+
+
+            document.getElementById(
+                "shootingBar"
+            ).style.width =
+                progress.shooting + "%";
+
+
+            document.getElementById(
+                "speedPercent"
+            ).textContent =
+                progress.speed + "%";
+
+
+            document.getElementById(
+                "speedBar"
+            ).style.width =
+                progress.speed + "%";
+
+        }
+
+
+
+        /* =========================
+           UPDATE CHALLENGES
+        ========================= */
+
+
+        function updateChallenges() {
+
+
+            for (
+                let i = 0;
+                i < completedChallenges.length;
+                i++
+            ) {
+
+
+                const id =
+                    completedChallenges[i];
+
+
+                const card =
+                    document.getElementById(
+                        "challenge" + id
+                    );
+
+
+                if (!card)
+                    continue;
+
+
+                card.classList.add(
+                    "completed"
+                );
+
+
+                const button =
+                    card.querySelector(
+                        ".challenge-btn"
+                    );
+
+
+                button.textContent =
+                    "✅ COMPLETED";
+
+
+                button.disabled = true;
+
+            }
+
+        }
+
+
+
+        /* =========================
+           UPDATE EVERYTHING
+        ========================= */
+
+
+        function updateEverything() {
+
+            updateProgress();
+
+            updateDashboard();
+
+            updateChallenges();
+
+        }
+
+
+
+        /* =========================
+           LOAD SAVED DATA
+        ========================= */
+
+
+        document.getElementById(
+            "playerName"
+        ).value =
+            player.name;
+
+
+        document.getElementById(
+            "playerPosition"
+        ).value =
+            player.position;
+
+
+        document.getElementById(
+            "favoriteSkill"
+        ).value =
+            player.skill;
+
+
+        updateEverything();
+
+
+    </script>
+
+
+</body>
+
+</html>
